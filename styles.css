@@ -416,7 +416,8 @@ html:not(.js) .gate { position: static; opacity: 1; visibility: visible; }
   :root { --rail: 34px; }
   /* phones: the prop sits under the caption, centred in the free lower part of the screen */
   .cap-prop { left: 12vw !important; right: auto !important; top: auto !important; bottom: 9vh !important; width: 76vw !important; height: 30vh !important; }
-  .prop-launch { left: 30vw !important; width: 40vw !important; height: 32vh !important; top: 11vh !important; bottom: auto !important; }
+  .cap-bl:not(.cap-hero) { top: 16vh; bottom: auto; }
+  .prop-launch { left: 30vw !important; width: 40vw !important; height: 33vh !important; top: auto !important; bottom: 8vh !important; }
   .tour-play { width: 96px; height: 96px; } .tour-play svg { width: 42px; height: 42px; }
   .route { margin-top: 12px; }
   .route { column-gap: 12px; row-gap: 8px; }
