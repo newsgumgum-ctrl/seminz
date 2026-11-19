@@ -255,4 +255,10 @@
   layout();
   requestAnimationFrame(tick);
   window.SITE = { jump: jump, get phase() { return phase; }, get film() { return film; }, SPLIT: SPLIT, T: T };
+  // header: name + language only near the top of the page
+  (function () {
+    var on = null;
+    function chk() { var p = scrollY > innerHeight * 0.35; if (p !== on) { on = p; html.classList.toggle('past-top', p); } }
+    addEventListener('scroll', chk, { passive: true }); chk();
+  })();
 })();

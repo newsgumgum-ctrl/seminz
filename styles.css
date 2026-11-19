@@ -414,10 +414,9 @@ html:not(.js) .gate { position: static; opacity: 1; visibility: visible; }
 }
 @media (max-width: 760px) {
   :root { --rail: 34px; }
-  .cap-prop { display: none; }   /* phones: no side props, the sky and the text carry the story */
-  .tour-stop { bottom: auto; top: 66px; left: auto; right: 14px; transform: none; width: 40px; height: 40px; padding: 0; justify-content: center; }
-  .tour-stop span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .tour-stop i { width: 11px; height: 11px; }
+  /* phones: the prop sits under the caption, centred in the free lower part of the screen */
+  .cap-prop { left: 12vw !important; right: auto !important; top: auto !important; bottom: 9vh !important; width: 76vw !important; height: 30vh !important; }
+  .prop-launch { left: 30vw !important; width: 40vw !important; height: 32vh !important; top: 11vh !important; bottom: auto !important; }
   .tour-play { width: 96px; height: 96px; } .tour-play svg { width: 42px; height: 42px; }
   .route { margin-top: 12px; }
   .route { column-gap: 12px; row-gap: 8px; }
@@ -481,18 +480,33 @@ html:not(.js) .gate { position: static; opacity: 1; visibility: visible; }
   .hint i { animation: none; transform: none; }
 }
 
-/* ---------- replay the guided flight at any time ---------- */
-.tour-resume { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 60; display: flex; align-items: center; gap: 10px;
-  padding: 8px 18px 8px 8px; border-radius: 999px; border: 1px solid rgba(246, 226, 185, .35); background: rgba(10, 12, 18, .55);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #f3ead8; font: 600 10.5px/1 Inter, sans-serif;
-  letter-spacing: .26em; text-transform: uppercase; cursor: pointer; transition: transform .25s ease, background .25s ease, opacity .4s ease; }
-.tour-resume svg { width: 30px; height: 30px; padding: 8px; border-radius: 50%; background: #f3ead8; fill: #0b0d12; box-sizing: border-box; }
-.tour-resume svg path { transform: translateX(1px); }
-.tour-resume:hover { background: rgba(20, 22, 30, .8); border-color: rgba(246, 226, 185, .6); }
-html.gated .tour-resume, html.touring .tour-resume { opacity: 0; pointer-events: none; }
-@media (max-width: 1200px) and (min-width: 761px) { .tour-resume { bottom: 74px; } }
-@media (max-width: 760px) {
-  .tour-resume { left: auto; right: 14px; bottom: auto; top: 66px; transform: none; padding: 0; border-radius: 50%; }
-  .tour-resume span { display: none; }
-  .tour-resume svg { width: 40px; height: 40px; padding: 12px; }
+/* ---------- play / stop: one round button, bottom right, like a chat bubble ---------- */
+.tour-resume, .tour-stop {
+  position: fixed; left: auto; right: 22px; bottom: 22px; top: auto; z-index: 60; transform: none;
+  width: 58px; height: 58px; padding: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 0 1px rgba(246, 226, 185, .25);
+  transition: transform .25s ease, opacity .35s ease, box-shadow .25s ease;
 }
+.tour-resume { border: 0; background: #f3ead8; color: #0b0d12; }
+.tour-resume svg { width: 22px; height: 22px; fill: #0b0d12; transform: translateX(2px); }
+.tour-resume::before { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1px solid rgba(246, 226, 185, .45); animation: ring 2.6s ease-out infinite; pointer-events: none; }
+.tour-resume span, .tour-stop span {
+  position: absolute; right: calc(100% + 12px); top: 50%; transform: translate(8px, -50%); white-space: nowrap; pointer-events: none;
+  padding: 9px 14px; border-radius: 999px; background: rgba(10, 12, 18, .78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  color: #f3ead8; font: 600 10px/1 var(--ui); letter-spacing: .24em; text-transform: uppercase; opacity: 0; transition: opacity .25s, transform .25s;
+}
+.tour-resume:hover, .tour-stop:hover { transform: scale(1.07); }
+.tour-resume:hover span, .tour-stop:hover span, .tour-resume:focus-visible span, .tour-stop:focus-visible span { opacity: 1; transform: translate(0, -50%); }
+.tour-stop { border: 1px solid rgba(242, 235, 221, .4); background: rgba(6, 8, 14, .7); gap: 0; }
+.tour-stop i { width: 14px; height: 14px; border-radius: 2px; background: var(--cream); }
+html.gated .tour-resume, html.touring .tour-resume { opacity: 0; pointer-events: none; }
+.explore { right: calc(var(--gx) + var(--rail) + 70px); }
+@media (max-width: 760px) {
+  .tour-resume, .tour-stop { right: 14px; bottom: 14px; width: 52px; height: 52px; }
+  .tour-resume span, .tour-stop span { display: none; }
+  .chapnav { left: 4px; transform: none; }
+}
+
+/* ---------- header: name and language only at the start, Hire stays ---------- */
+.wordmark, .chrome .meta, .chrome .lang { transition: opacity .45s ease, visibility 0s linear 0s; }
+html.past-top .wordmark, html.past-top .chrome .meta, html.past-top .chrome .lang { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .45s ease, visibility 0s linear .45s; }
