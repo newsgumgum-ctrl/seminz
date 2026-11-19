@@ -164,7 +164,7 @@
   });
   var passReady = window.SZPass ? window.SZPass.ready() : Promise.resolve();
   Promise.all(jobs.concat([passReady])).then(finish, finish);
-  setTimeout(finish, 4000);
+  setTimeout(finish, 2500);
 
   /* ---------- line reveals: each headline line slides up out of a mask ---------- */
   var ready = false;

@@ -314,7 +314,7 @@ html:not(.js) .gate { position: static; opacity: 1; visibility: visible; }
 
 /* ---------- guided tour ---------- */
 .tour { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: #000; opacity: 1; transition: opacity .6s ease; }
-.tour[hidden], .tour-stop[hidden] { display: none; }
+.tour-resume[hidden], .tour[hidden], .tour-stop[hidden] { display: none; }
 .tour.on { opacity: 1; }
 .tour { transition: opacity .6s ease, background .6s ease; }
 .tour.noting { background: #000; }
@@ -415,7 +415,9 @@ html:not(.js) .gate { position: static; opacity: 1; visibility: visible; }
 @media (max-width: 760px) {
   :root { --rail: 34px; }
   .cap-prop { display: none; }   /* phones: no side props, the sky and the text carry the story */
-  .tour-stop { bottom: auto; top: 66px; }
+  .tour-stop { bottom: auto; top: 66px; left: auto; right: 14px; transform: none; width: 40px; height: 40px; padding: 0; justify-content: center; }
+  .tour-stop span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tour-stop i { width: 11px; height: 11px; }
   .tour-play { width: 96px; height: 96px; } .tour-play svg { width: 42px; height: 42px; }
   .route { margin-top: 12px; }
   .route { column-gap: 12px; row-gap: 8px; }
@@ -477,4 +479,20 @@ html:not(.js) .gate { position: static; opacity: 1; visibility: visible; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hint i { animation: none; transform: none; }
+}
+
+/* ---------- replay the guided flight at any time ---------- */
+.tour-resume { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 60; display: flex; align-items: center; gap: 10px;
+  padding: 8px 18px 8px 8px; border-radius: 999px; border: 1px solid rgba(246, 226, 185, .35); background: rgba(10, 12, 18, .55);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #f3ead8; font: 600 10.5px/1 Inter, sans-serif;
+  letter-spacing: .26em; text-transform: uppercase; cursor: pointer; transition: transform .25s ease, background .25s ease, opacity .4s ease; }
+.tour-resume svg { width: 30px; height: 30px; padding: 8px; border-radius: 50%; background: #f3ead8; fill: #0b0d12; box-sizing: border-box; }
+.tour-resume svg path { transform: translateX(1px); }
+.tour-resume:hover { background: rgba(20, 22, 30, .8); border-color: rgba(246, 226, 185, .6); }
+html.gated .tour-resume, html.touring .tour-resume { opacity: 0; pointer-events: none; }
+@media (max-width: 1200px) and (min-width: 761px) { .tour-resume { bottom: 74px; } }
+@media (max-width: 760px) {
+  .tour-resume { left: auto; right: 14px; bottom: auto; top: 66px; transform: none; padding: 0; border-radius: 50%; }
+  .tour-resume span { display: none; }
+  .tour-resume svg { width: 40px; height: 40px; padding: 12px; }
 }

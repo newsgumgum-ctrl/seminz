@@ -6,7 +6,7 @@
   'use strict';
   var html = document.documentElement;
   var $ = function (s) { return document.querySelector(s); };
-  var box = $('#tour'), play = $('#tourPlay'), skip = $('#tourSkip'), stopBtn = $('#tourStop');
+  var box = $('#tour'), play = $('#tourPlay'), skip = $('#tourSkip'), stopBtn = $('#tourStop'), again = $('#tourResume');
   var sc = $('#showcase'), scFrame = $('#scFrame'), scImg = $('#scImg'), scName = $('#scName'), scDomain = $('#scDomain');
   if (!box || !window.SITE) return;
   var offer = !/[?&](instant|notour)\b/.test(location.search);
@@ -25,7 +25,7 @@
     document.querySelectorAll('.cap').forEach(function (c, i) {
       var a = +c.dataset.in, b = +c.dataset.out;
       if (i > 0) list.push({ y: yFilm(a + (b - a) * 0.45), hold: 5.2 });
-      else list.push({ y: yFilm(0.03), hold: 4.5 });
+      else list.push({ y: yFilm(0.03), hold: 3.2 });
     });
     SITE.T.centers.forEach(function (c, i) { list.push({ y: yPhase(c), hold: 5.5, chapter: i }); });
     list.push({ y: yPhase(1), hold: 5 });
@@ -69,8 +69,12 @@
   }
   function closeShowcase() { sc.classList.remove('on'); sc.hidden = true; scFrame.style.transform = ''; }
 
-  function run() {
+  function run(fromHere) {
     var list = stops(), i = 0;
+    if (fromHere) {                            // pick up at the next stop below where the visitor is
+      while (i < list.length && list[i].y < scrollY - 40) i++;
+      if (i >= list.length - 1) { i = 0; }
+    }
     (function next() {
       if (!running) return;
       if (i >= list.length) { stop(); return; }
@@ -85,7 +89,7 @@
   }
   function stop() {
     running = false; cancelAnimationFrame(raf); clearTimeout(timer); closeShowcase();
-    stopBtn.hidden = true; html.classList.remove('touring');
+    stopBtn.hidden = true; html.classList.remove('touring'); if (again) again.hidden = false;
     ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (e) { removeEventListener(e, onUser, true); });
   }
   function onUser(e) {
@@ -96,28 +100,39 @@
     box.classList.add('gone');
     html.classList.remove('gated');
     window.dispatchEvent(new Event('gate-open'));
-    setTimeout(function () { box.hidden = true; }, 800);
+    if (again) again.hidden = false;
+    setTimeout(function () { box.hidden = true; }, 700);
+  }
+  function whenLoaded(fn) { (function w() { if (html.classList.contains('loaded')) fn(); else setTimeout(w, 80); })(); }
+  function begin(fromHere) {
+    running = true; html.classList.add('touring'); stopBtn.hidden = false; if (again) again.hidden = true;
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (e) { addEventListener(e, onUser, { capture: true, passive: true }); });
   }
   function start() {
     scrollTo(0, 0);
     box.classList.add('noting');
+    var t0 = performance.now();
     setTimeout(function () {
-      openGate();
-      running = true; html.classList.add('touring'); stopBtn.hidden = false;
-      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (e) { addEventListener(e, onUser, { capture: true, passive: true }); });
-      timer = setTimeout(run, 1200);          // let the hero title rise first
-    }, 3800);
+      whenLoaded(function () {
+        openGate(); begin();
+        timer = setTimeout(function () { run(false); }, 500);   // let the hero title rise first
+      });
+    }, 2400);
   }
-
+  function replay() {
+    if (running) return;
+    var atEnd = scrollY > document.documentElement.scrollHeight - innerHeight * 1.6;
+    if (atEnd) scrollTo(0, 0);
+    begin(); timer = setTimeout(function () { run(!atEnd); }, 150);
+  }
   play.addEventListener('click', start);
   skip.addEventListener('click', openGate);
   stopBtn.addEventListener('click', stop);
+  if (again) again.addEventListener('click', replay);
+  if (!offer && again) again.hidden = false;
   box.addEventListener('keydown', function (e) { if (e.key === 'Escape') openGate(); });
 
-  // the play button fades in once the loader is done
-  if (offer) (function wait() {
-    if (html.classList.contains('loaded')) { box.classList.add('on'); play.focus({ preventScroll: true }); return; }
-    setTimeout(wait, 120);
-  })();
-  window.TOUR = { start: function () { box.hidden = false; start(); }, stop: stop, show: function (i) { showcase(i, function () {}); } };
+  // the play button shows straight away; the site underneath keeps loading meanwhile
+  if (offer) requestAnimationFrame(function () { box.classList.add('on'); play.focus({ preventScroll: true }); });
+  window.TOUR = { start: function () { box.hidden = false; start(); }, replay: replay, stop: stop, show: function (i) { showcase(i, function () {}); } };
 })();

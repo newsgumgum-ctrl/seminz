@@ -6,11 +6,11 @@ avion koji se razvije u boarding kartu sa dugmićima "Hire Semin" i "Schedule a 
 STRUKTURA
   index.html          ceo tekst sajta (naslovi, projekti, linkovi)
   styles.css          izgled
-  main.js             skrol, loader, natpisi, poglavlja, kapija (gate)
+  main.js             skrol, natpisi, poglavlja, kapija (gate)
   sky.js              proceduralni "film": grad noću, oblaci, izlazak sunca (WebGL shader)
   product.js          3D papirni avion (Three.js), rotacija mišem, razvijanje u kartu
-  props.js            3D predmeti uz tekst: tabla SZ001, sijalica sa avionom, filmska klapa,
-                      laptop i telefon, raketa, značke projekata i voxel ostrvo za FWL Studios
+  props.js            3D predmeti uz tekst: sijalica sa avionom, filmska klapa,
+                      laptop i telefon, raketa
                       (na telefonu se bočni predmeti ne prikazuju)
   i18n.js             English / Srpski: svi srpski tekstovi su ovde (SR), engleski je u index.html
   pass.js             crta boarding kartu i avionsku poštu (teksture aviona)
@@ -35,7 +35,8 @@ OBILAZAK (AUTOMATSKI)
   Pre ulaska na sajt crni ekran sa Play dugmetom, pa poruka da se ne dodiruje ekran. Sajt tada
   sam skroluje od natpisa do natpisa; kod svakog projekta ostavi vreme za čitanje, pa preko celog
   ekrana pokaže početnu stranu tog sajta i ide dalje (tour.js). Staje čim posetilac skroluje, dodirne
-  ekran ili pritisne taster, ili klikne "Stop the tour". Sličice sajtova su u assets/previews/.
+  ekran ili pritisne taster, ili klikne "Stop the tour". Dugme "Play the flight" (na telefonu okruglo dugme gore desno)
+ponovo pušta obilazak od mesta gde je posetilac. Sličice sajtova su u assets/previews/.
   Za testiranje bez dugmeta dodaj ?notour na kraj adrese.
 
 JEZIK
@@ -50,7 +51,7 @@ IZMENE TEKSTA
   meni sa brojevima i let aviona se sami prilagode broju projekata. Značku dodaš u PINS u props.js,
   usluge i klijenti u <section class="after">. Linkovi za Hire/Schedule su na kapiji (class="gate")
   i u odeljku "closing".
-  3D predmeti prate prazne okvire u stranici (class="cap-prop" i class="ch-emblem"), pa se
+  3D predmeti prate prazne okvire u stranici (class="cap-prop"), pa se
   njihova veličina i položaj menjaju u styles.css. Značke projekata su u props.js (PINS):
   boja i tekst po obodu. Ako pošalješ prave logoe projekata, mogu da ih ubacim u značke.
   Boarding karta (tekst na kartici) se crta u pass.js. Ako je menjaš, napravi i novu

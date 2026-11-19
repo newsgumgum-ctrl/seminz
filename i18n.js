@@ -119,6 +119,7 @@
 "tour2": "Istražiću sam",
 "tour3": "Molimo vas da ne dodirujete vaš ekran na par minuta.<br>Hvala.",
 "tour4": "Zaustavi obilazak",
+"tour6": "Pusti let",
 "tour5": "Pravi sajt · početna strana"
 };
   var META = {
@@ -148,8 +149,15 @@
 
   function pick() {
     try { var s = localStorage.getItem('sz-lang'); if (s === 'en' || s === 'sr') return s; } catch (e) {}
-    var n = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-    return /^(sr|hr|bs|sh|cnr|me)\b/i.test(n) ? 'sr' : 'en';
+    // where the visitor is: the device's time zone (Serbia, Bosnia, Croatia, Montenegro, N. Macedonia, Slovenia)
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (/^Europe\/(Belgrade|Sarajevo|Zagreb|Podgorica|Skopje|Ljubljana)$/.test(tz)) return 'sr';
+    } catch (e) {}
+    // or a browser set to a BCMS language anywhere in the world
+    var langs = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < langs.length; i++) if (/^(sr|hr|bs|sh|cnr|me)\b/i.test(langs[i] || '')) return 'sr';
+    return 'en';
   }
   function setAttr(sel, attr, val) { var el = document.querySelector(sel); if (el) el.setAttribute(attr, val); }
   function apply(lang) {
