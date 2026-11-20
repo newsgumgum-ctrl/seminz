@@ -126,6 +126,21 @@
     begin(); timer = setTimeout(function () { run(!atEnd); }, 150);
   }
   play.addEventListener('click', start);
+  /* "See my work": only the websites, as a grid; "Who I am" from there starts the flight */
+  var works = $('#works'), chooseWork = $('#chooseWork'), worksClose = $('#worksClose'), worksWho = $('#worksWho');
+  function showWorks() {
+    if (!works) return;
+    box.classList.add('gone'); works.hidden = false; works.scrollTop = 0;
+    requestAnimationFrame(function () { works.classList.add('on'); });
+    setTimeout(function () { box.hidden = true; }, 600);
+    try { history.replaceState(null, '', '#radovi'); } catch (e) {}
+  }
+  function hideWorks() { works.classList.remove('on'); works.hidden = true; try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+  if (chooseWork) chooseWork.addEventListener('click', showWorks);
+  if (worksClose) worksClose.addEventListener('click', function () { hideWorks(); openGate(); });
+  if (worksWho) worksWho.addEventListener('click', function () { hideWorks(); box.hidden = false; box.classList.remove('gone'); box.classList.add('on'); start(); });
+  if (works) works.addEventListener('keydown', function (e) { if (e.key === 'Escape') { hideWorks(); openGate(); } });
+  if (offer && /^#(radovi|work)$/.test(location.hash)) showWorks();
   skip.addEventListener('click', openGate);
   stopBtn.addEventListener('click', stop);
   if (again) again.addEventListener('click', replay);
@@ -134,5 +149,5 @@
 
   // the play button shows straight away; the site underneath keeps loading meanwhile
   if (offer) requestAnimationFrame(function () { box.classList.add('on'); play.focus({ preventScroll: true }); });
-  window.TOUR = { start: function () { box.hidden = false; start(); }, replay: replay, stop: stop, show: function (i) { showcase(i, function () {}); } };
+  window.TOUR = { works: showWorks, start: function () { box.hidden = false; start(); }, replay: replay, stop: stop, show: function (i) { showcase(i, function () {}); } };
 })();

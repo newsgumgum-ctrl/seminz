@@ -19,13 +19,53 @@
 <body>
 
 <div class="tour" id="tour" hidden>
-  <div class="tour-in">
-    <button type="button" class="tour-play" id="tourPlay" aria-label="Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.6v12.8a1.1 1.1 0 0 0 1.66.95l10.3-6.4a1.1 1.1 0 0 0 0-1.9L9.66 4.65A1.1 1.1 0 0 0 8 5.6z"/></svg></button>
-    <p class="tour-label" data-t="tour1">Play the flight</p>
+  <div class="tour-in choose">
+    <p class="eyebrow ch-eyebrow" data-t="cg0">Semin Zoranic · Web &amp; App Developer</p>
+    <h2 class="display ch-q" data-t="cg1">What would you like to see?</h2>
+    <div class="ch-opts">
+      <button type="button" class="ch-opt ch-opt-work" id="chooseWork"><span class="ch-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><b data-t="cg2">See my work</b><small data-t="cg3">Websites I built. One click and you’re on the live site.</small></button>
+      <button type="button" class="ch-opt" id="tourPlay"><span class="ch-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.6v12.8a1.1 1.1 0 0 0 1.66.95l10.3-6.4a1.1 1.1 0 0 0 0-1.9L9.66 4.65A1.1 1.1 0 0 0 8 5.6z"/></svg></span><b data-t="cg4">Who I am</b><small data-t="cg5">A short flight through my story, projects and how I work.</small></button>
+    </div>
     <button type="button" class="tour-skip" id="tourSkip" data-t="tour2">I’ll explore on my own</button>
+    <p class="ch-call"><a href="tel:+381628509254"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>+381 62 850 9254</span></a><a href="https://wa.me/381628509254" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg><span>WhatsApp</span></a></p>
   </div>
   <p class="tour-note" id="tourNote" data-t="tour3">Please don’t touch your screen for a few minutes.<br>Thank you.</p>
 </div>
+
+<section class="works" id="works" hidden aria-label="Portfolio">
+  <div class="works-bar">
+    <span class="wordmark">Semin Zoranic</span>
+    <div class="works-bar-r">
+      <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" lang="en" aria-pressed="true">English</button><span aria-hidden="true">/</span><button type="button" data-lang="sr" lang="sr-Latn" aria-pressed="false">Srpski</button></div>
+      <a class="call-pill" href="tel:+381628509254"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>+381 62 850 9254</span></a>
+      <button type="button" class="works-x" id="worksClose" aria-label="Close" data-t="w7">Explore the site</button>
+    </div>
+  </div>
+  <div class="works-in">
+    <p class="eyebrow" data-t="w1">Portfolio · 9 projects</p>
+    <h2 class="display works-h" data-t="w2">Websites I <em>built.</em></h2>
+    <p class="works-lead" data-t="w3">Click any project to open the live website in a new tab.</p>
+    <ul class="works-grid">
+      <li><a class="wk" href="https://fewwantleads.com/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>fewwantleads.com</em></span><img src="assets/previews/fewwantleads.jpg" alt="FewWantLeads" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t26" class="wk-type">YouTube agency</span><b class="wk-name">FewWantLeads</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://fwlstudios.com/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>fwlstudios.com</em></span><img src="assets/previews/fwlstudios.jpg" alt="FWL Studios" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t27" class="wk-type">Minecraft agency</span><b class="wk-name">FWL Studios</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://sezo.work/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>sezo.work</em></span><img src="assets/previews/sezo.jpg" alt="SEZO" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t28" class="wk-type">Metalwork · Website</span><b class="wk-name">SEZO</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://newsgumgum-ctrl.github.io/kuki/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>enterijeri-kuki</em></span><img src="assets/previews/kuki.jpg" alt="Enterijeri Kuki" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t29" class="wk-type">Car interiors · Concept</span><b class="wk-name">Enterijeri Kuki</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://albeyk.com/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>albeyk.com</em></span><img src="assets/previews/albeyk.jpg" alt="Albeyk" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t30" class="wk-type">Restaurant · Website</span><b class="wk-name">Albeyk</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://newsgumgum-ctrl.github.io/begovic-watches/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>begovic-watches</em></span><img src="assets/previews/begovic.jpg" alt="Begović Watches" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t31" class="wk-type">Vintage watches · Shop</span><b class="wk-name">Begović Watches</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://newsgumgum-ctrl.github.io/dinatajic/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>dinatajic</em></span><img src="assets/previews/dinatajic.jpg" alt="Dina Tajić" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t32" class="wk-type">Artist · Website</span><b class="wk-name">Dina Tajić</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://furevercanvas.com/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>furevercanvas.com</em></span><img src="assets/previews/furever.jpg" alt="Furever Canvas" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t33" class="wk-type">E-commerce</span><b class="wk-name">Furever Canvas</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+      <li><a class="wk" href="https://mojcas.com/" target="_blank" rel="noopener"><span class="wk-shot"><span class="shot-bar"><i></i><i></i><i></i><em>mojcas.com</em></span><img src="assets/previews/mojcas.jpg" alt="Moj Čas" loading="lazy" width="1280" height="800"></span><span class="wk-meta"><span data-t="t34" class="wk-type">Web app · Tutoring</span><b class="wk-name">Moj Čas</b><span class="wk-go" data-t="w6">Open live site ↗</span></span></a></li>
+    </ul>
+    <div class="works-cta">
+      <h3 class="display" data-t="w4">Want a website like these?</h3>
+      <div class="works-cta-b">
+        <a class="btn btn-solid" href="tel:+381628509254"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span data-t="w8">Call +381 62 850 9254</span></a>
+        <a class="btn" href="https://wa.me/381628509254" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg><span>WhatsApp</span></a>
+        <button type="button" class="btn" id="worksWho"><span data-t="w5">Who I am →</span></button>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="showcase" id="showcase" aria-hidden="true" hidden>
   <div class="sc-frame" id="scFrame"><span class="shot-bar"><i></i><i></i><i></i><em id="scDomain"></em></span><img id="scImg" alt=""></div>
   <p class="sc-cap"><b id="scName"></b><span data-t="tour5">Live website · landing page</span></p>
@@ -38,6 +78,7 @@
   <div class="chrome-right">
     <p data-t="t0" class="meta">Creative Director <span>·</span> Producer <span>·</span> Web &amp; App Developer</p>
     <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" lang="en" aria-pressed="true">English</button><span aria-hidden="true">/</span><button type="button" data-lang="sr" lang="sr-Latn" aria-pressed="false">Srpski</button></div>
+    <a class="call-top" href="tel:+381628509254" aria-label="Call +381 62 850 9254"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>+381 62 850 9254</span></a>
     <a data-t="t1" class="hire-top" href="#gate" data-jump="gate">Hire Semin</a>
   </div>
 </header>
@@ -231,9 +272,12 @@
         <img class="pass" id="passImg" src="assets/pass.webp" width="2048" height="854" decoding="async" alt="Boarding pass, business class. Your project, cleared for takeoff. From idea to final product. Flight SZ001, gate Call, seat 1A, pilot S. Zoranic.">
         <div class="gate-actions">
           <a data-t="t2" class="btn btn-solid" href="https://de.linkedin.com/in/semin-zoranic-518618212" target="_blank" rel="noopener">Hire Semin <span>↗</span></a>
-          <a data-t="t3" class="btn" href="https://fewwantleads.com/" target="_blank" rel="noopener">Schedule a call <span>↗</span></a>
+          <a class="btn" href="tel:+381628509254"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>+381 62 850 9254</span></a>
+          <a class="btn" href="https://wa.me/381628509254" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg><span>WhatsApp</span></a>
         </div>
         <p class="gate-links">
+          <a href="tel:+381628509254">+381 62 850 9254</a>
+          <a href="https://wa.me/381628509254" target="_blank" rel="noopener">WhatsApp</a>
           <a href="https://de.linkedin.com/in/semin-zoranic-518618212" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://ytjobs.co/talent/profile/30739" target="_blank" rel="noopener">YT Jobs</a>
           <a href="https://www.instagram.com/semin.zoranic" target="_blank" rel="noopener">Instagram</a>
@@ -292,6 +336,8 @@
       <footer class="foot">
         <span data-t="t110">© 2026 Semin Zoranic · Creative Director, Producer, Web &amp; App Developer</span>
         <span class="foot-links">
+          <a href="tel:+381628509254">+381 62 850 9254</a>
+          <a href="https://wa.me/381628509254" target="_blank" rel="noopener">WhatsApp</a>
           <a href="https://de.linkedin.com/in/semin-zoranic-518618212" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://ytjobs.co/talent/profile/30739" target="_blank" rel="noopener">YT Jobs</a>
           <a href="https://www.instagram.com/semin.zoranic" target="_blank" rel="noopener">Instagram</a>
